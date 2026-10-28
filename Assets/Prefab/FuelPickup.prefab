@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d907da56f007cc846bc19923e094b9c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FuelBehavior
-  fuelAmount: 10
+  fuelAmount: 15
 --- !u!61 &2584230900853101799
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -5,17 +5,25 @@ using UnityEngine.Rendering.Universal;
 
 public class AmbusherAI : MonoBehaviour
 {
-    [SerializeField] private float lightSpeedFullTorch = 1.5f; // Speed when the player has a full torch in light areas
-    [SerializeField] private float lightSpeedDyingTorch = 3.5f; // Speed when the player has a dying torch in light areas
-    [SerializeField] private float darkSpeedFullTorch = 5f; // Speed when the player has a full torch in dark areas
-    [SerializeField] private float darkSpeedDyingTorch = 6f; // Speed when the player has a dying torch in dark areas
 
     [SerializeField] private float minWait = 2f; // Minimum wait time before ambushing
     [SerializeField] private float maxWait = 5f; // Maximum wait time before ambushing
     [SerializeField] private float warningTime = 0.8f; // Time the warning eyes are shown before lunging
     [SerializeField] private float maxLungeTime = 4f; // Maximum time the ambusher will lunge towards the player before giving up
 
+    [SerializeField] private float lungeSpeed = 8f; //How fast the ambusher lunges towards the player
+
     [SerializeField] private Light2D warningEyes; // Reference to the warning eyes light component
+
+    //Lead lunge to where the player is going to be
+    [SerializeField] private float leadTime = 0.5f;
+    [SerializeField] private float overshootDistance = 1.5f;
+
+    //Stalk the player
+    [SerializeField] private float stalkSpeed = 1.5f;
+    [SerializeField] private float stalkMargin = 1.5f;
+
+    private bool isLunging;
 
     private NavMeshAgent agent; // Reference to the NavMeshAgent component
     private Transform player; // Reference to the player's transform
@@ -44,14 +52,15 @@ public class AmbusherAI : MonoBehaviour
         float fuel = torch.GetFuelPercentage(); // Get the current fuel percentage of the torch
         float speed;
 
-        if (torch.IsInLight(transform.position)) // Is ambusher in light area?
+        if (isLunging)
         {
-            speed = Mathf.Lerp(lightSpeedDyingTorch, lightSpeedFullTorch, fuel); // Interpolate speed based on torch fuel in light areas
-        } 
-        else // Ambusher is in dark area
-        {
-            speed = Mathf.Lerp(darkSpeedDyingTorch, darkSpeedFullTorch, fuel); // Interpolate speed based on torch fuel in dark areas
+            speed = lungeSpeed;
         }
+        else
+        {
+            speed = stalkSpeed;
+        }
+
         if (stun.IsStunned()) // Check if the ambusher is stunned
         {
             speed = 0; // Set speed to 0 if stunned
@@ -65,23 +74,55 @@ public class AmbusherAI : MonoBehaviour
     {
         while (true)
         {
-            //Lurk
-            agent.isStopped = true; // Stop the agent from moving
-            yield return new WaitForSeconds(Random.Range(minWait, maxWait)); // Wait for a random time between minWait and maxWait
+            //Stalk
+            isLunging = false;
+            float stalkTime = Random.Range(minWait, maxWait);
+            float stalkTimer = 0f;
 
-            //Wait for Warning Eyes due to Flash
-            while (stun.IsStunned())
+            while (stalkTimer < stalkTime || stun.IsStunned())
             {
+                float distance = Vector2.Distance(transform.position, player.position);
+                float lightEdge = torch.GetLightRadius() + stalkMargin;
+
+                agent.SetDestination(player.position);
+                agent.isStopped = distance <= lightEdge;
+
+                stalkTimer += Time.deltaTime;
                 yield return null;
             }
 
-            //Warn
-            Vector3 target = player.position; // Get the player's current position
-            warningEyes.enabled = true; // Enable the warning eyes light
-            yield return new WaitForSeconds(warningTime); // Wait for the warning time
-            warningEyes.enabled = false; // Disable the warning eyes light
+            agent.isStopped = true;
+            
+
+            //Warn and watch player movement
+            warningEyes.enabled = true;
+            Vector3 startPosition = player.position;
+
+            yield return new WaitForSeconds(warningTime);
+            
+            warningEyes.enabled = false;
+            Vector3 endPosition = player.position;
+
+            //Lead: aim where player is heading
+            Vector3 playerVelocity = (endPosition - startPosition) / warningTime;
+            Vector3 target = endPosition + playerVelocity * leadTime;
+            
+            //Overshoot: charge past the target
+            Vector3 chargeDirection = (target - transform.position).normalized;
+            target += chargeDirection * overshootDistance;
+
+            //Keep target on walkable ground
+            if (NavMesh.SamplePosition(target, out NavMeshHit hit, 2f, NavMesh.AllAreas))
+            {
+                target = hit.position;
+            }
+            else
+            {
+                target = endPosition;
+            }
 
             //Lunge
+            isLunging = true;
             agent.isStopped = false; // Allow the agent to move
             agent.SetDestination(target); // Set the agent's destination to the player's position at the time of warning
 

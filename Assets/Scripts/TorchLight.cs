@@ -68,5 +68,10 @@ public class TorchLight : MonoBehaviour
     {
         flashBoost = brightness; // Set the flash boost to the specified brightness
     }
+
+    public float GetLightRadius()
+    {
+        return torchLight.pointLightOuterRadius;
+    }
 }
 

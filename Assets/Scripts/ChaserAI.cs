@@ -3,7 +3,6 @@ using UnityEngine.AI;
 
 public class ChaserAI : MonoBehaviour
 {
-    [SerializeField] private float darkSpeed = 3.5f;
     [SerializeField] private float lightSpeedFullTorch = 1f;
     [SerializeField] private float lightSpeedDyingTorch = 3f;
 
@@ -30,7 +29,7 @@ public class ChaserAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float speed = darkSpeed;
+        float speed;
 
         if (torch.IsInLight(transform.position))
         {
