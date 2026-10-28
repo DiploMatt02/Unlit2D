@@ -14,7 +14,10 @@ public class TorchLight : MonoBehaviour
     [SerializeField] private float flickerAmount = 0.08f; //how much the light flickers based on the fuel percentage
     [SerializeField] private float flickerSpeed = 3f; //how fast the light flickers based on the fuel percentage
     private float burnTimeLeft; // Remaining burn time in seconds.
-    private float displayFuel; // The fuel percentage that is currently being displayed
+    private float displayFuel; // The fuel percentage that is currently being displayed\
+
+    [SerializeField] private float flashFadeSpeed = 6f; // Speed at which the light fades in and out when flickering
+    private float flashBoost; // Powerup boost for the light providing extra light for a short duration
 
     void Start()
     {
@@ -36,7 +39,8 @@ public class TorchLight : MonoBehaviour
         float flicker = (Mathf.PerlinNoise(Time.time * flickerSpeed, 0f) - 0.5f) * 2f *flickerAmount; // Calculate a flicker value based on Perlin noise
         
         torchLight.pointLightOuterRadius = Mathf.Lerp(minRadius, fullRadius, displayFuel); // Adjust the light radius based on displayed fuel percentage
-        torchLight.intensity = Mathf.Lerp(minIntensity, fullIntensity, displayFuel) + flicker; // Adjust the light intensity based on displayed fuel percentage and add flicker
+        flashBoost = Mathf.MoveTowards(flashBoost, 0f, flashFadeSpeed * Time.deltaTime); // Gradually reduce the flash boost over time
+        torchLight.intensity = Mathf.Lerp(minIntensity, fullIntensity, displayFuel) + flicker + flashBoost; // Adjust the light intensity based on displayed fuel percentage and add flicker
         torchLight.enabled = burnTimeLeft > 0f; // Enable or disable the light based on whether there is burn time left
     }
 
@@ -58,6 +62,11 @@ public class TorchLight : MonoBehaviour
 
         float distance = Vector2.Distance(torchLight.transform.position, position); // Calculate the distance from the torch to the given position
         return distance <= torchLight.pointLightOuterRadius; // Return true if the position is within
+    }
+
+    public void TriggerFlash(float brightness)
+    {
+        flashBoost = brightness; // Set the flash boost to the specified brightness
     }
 }
 

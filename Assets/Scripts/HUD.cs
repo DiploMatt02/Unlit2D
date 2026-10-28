@@ -1,0 +1,64 @@
+using Unity.Hierarchy.Editor;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class HUD : MonoBehaviour
+{
+    [Header("Player Systems")]
+    [SerializeField] private TorchLight torch;
+    [SerializeField] private PlayerHealth health;
+    [SerializeField] private KeyCollector keys;
+    [SerializeField] private FlashAbility flash;
+
+    [Header("Torch Bar")]
+    [SerializeField] private Image torchBarFill;
+    [SerializeField] private Color fullTorchColor = new Color(1f, 0.6f, 0.1f);
+    [SerializeField] private Color emptyTorchColor = Color.red;
+
+    [Header("Hearts")]
+    [SerializeField] private Image[] hearts;
+    [SerializeField] private Color fullHeartColor = Color.red;
+
+    [Header("Keys")]
+    [SerializeField] private Image[] keyIcons;
+    [SerializeField] private Color collectedKeyColor = new Color(1f, 0.85f, 0.2f);
+
+    [Header("Flash")]
+    [SerializeField] private Image flashIcon;
+    [SerializeField] private Color flashReadyColor = Color.white;
+
+    [Header("Shared")]
+    [SerializeField] private Color emptyColor = new Color(0.25f, 0.25f, 0.25f);
+
+    // Update is called once per frame
+    void Update()
+    {
+        //Torch bar
+        float fuel = torch.GetFuelPercentage();
+        torchBarFill.fillAmount = fuel;
+        torchBarFill.color = Color.Lerp(emptyTorchColor, fullTorchColor, fuel);
+
+        //Hearts and keys
+        UpdateIcons(hearts, health.GetCurrentHealth(), fullHeartColor);
+        UpdateIcons(keyIcons, keys.GetKeysCollected(), collectedKeyColor);
+
+        //Flash
+        flashIcon.color = flash.HasFlash() ? flashReadyColor : emptyColor;
+    }
+
+    private void UpdateIcons(Image[] icons, int filledCount, Color filledColor)
+    {
+        for (int i = 0; i < icons.Length; i++)
+        {
+            if (i < filledCount)
+            {
+                icons[i].color = filledColor;
+            }
+            else
+            {
+                icons[i].color = emptyColor;
+            }
+        }
+    }
+}

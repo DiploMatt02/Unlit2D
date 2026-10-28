@@ -14,8 +14,11 @@ public class ChaserAI : MonoBehaviour
     private NavMeshAgent agent;
     private Transform player;
 
+    private EnemyStun stun;
+
     void Start()
     {
+        stun = GetComponent<EnemyStun>();
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation= false;
         agent.updateUpAxis = false;
@@ -36,6 +39,11 @@ public class ChaserAI : MonoBehaviour
         else
         {
             speed = Mathf.Lerp(darkSpeedDyingTorch, darkSpeedFullTorch, torch.GetFuelPercentage());
+        }
+        if (stun.IsStunned())
+        {
+            speed = 0;
+            agent.velocity = Vector3.zero;
         }
         agent.speed = speed;
         
