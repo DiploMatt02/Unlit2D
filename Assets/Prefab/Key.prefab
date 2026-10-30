@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55e59982a12e5a540a27bbb26d94465e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KeyPickup
+  pickupSound: {fileID: 8300000, guid: 48eb82b22ca825941b47fd62afe4cb37, type: 3}
 --- !u!61 &-3709534104149572943
 BoxCollider2D:
   m_ObjectHideFlags: 0

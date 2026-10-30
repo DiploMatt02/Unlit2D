@@ -5,51 +5,62 @@ using UnityEngine.Rendering.Universal;
 
 public class AmbusherAI : MonoBehaviour
 {
+    //Stalk before attacking
+    [Header("Timing")]
+    [SerializeField] private float minWait = 2f;
+    [SerializeField] private float maxWait = 5f;
+    [SerializeField] private float warningTime = 0.8f;
+    [SerializeField] private float maxLungeTime = 4f;
 
-    [SerializeField] private float minWait = 2f; // Minimum wait time before ambushing
-    [SerializeField] private float maxWait = 5f; // Maximum wait time before ambushing
-    [SerializeField] private float warningTime = 0.8f; // Time the warning eyes are shown before lunging
-    [SerializeField] private float maxLungeTime = 4f; // Maximum time the ambusher will lunge towards the player before giving up
-
-    [SerializeField] private float lungeSpeed = 8f; //How fast the ambusher lunges towards the player
-
-    [SerializeField] private Light2D warningEyes; // Reference to the warning eyes light component
-
-    //Lead lunge to where the player is going to be
-    [SerializeField] private float leadTime = 0.5f;
-    [SerializeField] private float overshootDistance = 1.5f;
-
-    //Stalk the player
+    //Stalks outside light raidus
+    [Header("Stalking")]
     [SerializeField] private float stalkSpeed = 1.5f;
     [SerializeField] private float stalkMargin = 1.5f;
 
+    //Lunge speed while aiming ahead the player and charges past for a prediction hit
+    [Header("Lunge")]
+    [SerializeField] private float lungeSpeed = 8f;
+    [SerializeField] private float leadTime = 0.5f;
+    [SerializeField] private float overshootDistance = 1.5f;
+
+    //Glowing eyes with sound before lunge attack
+    [Header("Warning")]
+    [SerializeField] private Light2D warningEyes;
+    [SerializeField] private AudioClip warningSound;
+    [SerializeField] private float warningVolume = 0.7f;
+
+    //Live state and components found at runtime
     private bool isLunging;
 
-    private NavMeshAgent agent; // Reference to the NavMeshAgent component
-    private Transform player; // Reference to the player's transform
-    private TorchLight torch; // Reference to the player's torch light component
+    private NavMeshAgent agent;
+    private Transform player;
+    private TorchLight torch;
 
-    private EnemyStun stun; // Reference to the enemy stun component
+    private EnemyStun stun;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {   
-        stun = GetComponent<EnemyStun>(); // Get the EnemyStun component attached to this GameObject
-        agent = GetComponent<NavMeshAgent>(); // Get the NavMeshAgent component attached to this GameObject
-        agent.updateRotation = false; // Disable automatic rotation updates
-        agent.updateUpAxis = false; // Disable automatic up axis updates
+        //Grab components and turn off 3D rotation
+        stun = GetComponent<EnemyStun>();
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
 
-        player = GameObject.FindWithTag("Player").transform; // Find the player GameObject by tag and get its transform
-        torch = player.GetComponentInChildren<TorchLight>(); // Get the TorchLight component from the player's children
+        //Find player
+        player = GameObject.FindWithTag("Player").transform;
+        torch = player.GetComponentInChildren<TorchLight>();
 
-        warningEyes.enabled = false; // Disable the warning eyes light at the start
-        StartCoroutine(AmbushLoop()); // Start the ambush loop coroutine
+        //Start with warning eyes off and start the stalk/warn/lunge cycle
+        warningEyes.enabled = false;
+        StartCoroutine(AmbushLoop());
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        float fuel = torch.GetFuelPercentage(); // Get the current fuel percentage of the torch
+        //Pick speed for current state, stun halts everything
+        float fuel = torch.GetFuelPercentage();
         float speed;
 
         if (isLunging)
@@ -61,20 +72,21 @@ public class AmbusherAI : MonoBehaviour
             speed = stalkSpeed;
         }
 
-        if (stun.IsStunned()) // Check if the ambusher is stunned
+        if (stun.IsStunned())
         {
-            speed = 0; // Set speed to 0 if stunned
-            agent.velocity = Vector3.zero; // Stop the agent's movement
-            warningEyes.enabled = false; //Disable Warning Eyes if stunned
+            speed = 0;
+            agent.velocity = Vector3.zero;
+            warningEyes.enabled = false;
         }
-        agent.speed = speed; // Set the agent's speed based on the calculated value
+        agent.speed = speed;
     }
-
+    
+    //Cycle loop: stalk, warn, lunge
     IEnumerator AmbushLoop()
     {
         while (true)
         {
-            //Stalk
+            //Stalk the player and wait for a random time at the light's edge
             isLunging = false;
             float stalkTime = Random.Range(minWait, maxWait);
             float stalkTimer = 0f;
@@ -91,11 +103,13 @@ public class AmbusherAI : MonoBehaviour
                 yield return null;
             }
 
+            //Freeze in place before the warning
             agent.isStopped = true;
             
 
-            //Warn and watch player movement
+            //Warning phase, eyes turn red and plays sound as it watches the player's movement
             warningEyes.enabled = true;
+            SoundManager.Instance.Play(warningSound, warningVolume);
             Vector3 startPosition = player.position;
 
             yield return new WaitForSeconds(warningTime);
@@ -103,15 +117,16 @@ public class AmbusherAI : MonoBehaviour
             warningEyes.enabled = false;
             Vector3 endPosition = player.position;
 
-            //Lead: aim where player is heading
+
+            //Lead where the player is heading, overshoot past in hopes of clipping player, keep on walkable ground
             Vector3 playerVelocity = (endPosition - startPosition) / warningTime;
             Vector3 target = endPosition + playerVelocity * leadTime;
             
-            //Overshoot: charge past the target
+
             Vector3 chargeDirection = (target - transform.position).normalized;
             target += chargeDirection * overshootDistance;
 
-            //Keep target on walkable ground
+
             if (NavMesh.SamplePosition(target, out NavMeshHit hit, 2f, NavMesh.AllAreas))
             {
                 target = hit.position;
@@ -121,16 +136,16 @@ public class AmbusherAI : MonoBehaviour
                 target = endPosition;
             }
 
-            //Lunge
+            //Lunge until it arrives or give up after maxLungeTime
             isLunging = true;
-            agent.isStopped = false; // Allow the agent to move
-            agent.SetDestination(target); // Set the agent's destination to the player's position at the time of warning
+            agent.isStopped = false;
+            agent.SetDestination(target);
 
-            float timer = 0f; // Initialize a timer to track the lunge duration
-            while (timer < maxLungeTime && (agent.pathPending || agent.remainingDistance > 0.2f)) // While the lunge time hasn't exceeded and the agent is still moving
+            float timer = 0f;
+            while (timer < maxLungeTime && (agent.pathPending || agent.remainingDistance > 0.2f))
             {
-                timer += Time.deltaTime; // Increment the timer by the time elapsed since the last frame
-                yield return null; // Wait for the next frame
+                timer += Time.deltaTime;
+                yield return null;
             }
         }
     }

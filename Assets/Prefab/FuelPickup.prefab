@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FuelBehavior
   fuelAmount: 15
+  pickupSound: {fileID: 8300000, guid: 48eb82b22ca825941b47fd62afe4cb37, type: 3}
 --- !u!61 &2584230900853101799
 BoxCollider2D:
   m_ObjectHideFlags: 0
