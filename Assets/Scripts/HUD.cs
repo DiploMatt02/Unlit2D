@@ -1,5 +1,3 @@
-using Unity.Hierarchy.Editor;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,8 +11,7 @@ public class HUD : MonoBehaviour
 
     [Header("Torch Bar")]
     [SerializeField] private Image torchBarFill;
-    [SerializeField] private Color fullTorchColor = new Color(1f, 0.6f, 0.1f);
-    [SerializeField] private Color emptyTorchColor = Color.red;
+    [SerializeField] private Animator torchBarFlameAnimator;
 
     [Header("Hearts")]
     [SerializeField] private Image[] hearts;
@@ -36,8 +33,12 @@ public class HUD : MonoBehaviour
     {
         //Torch bar
         float fuel = torch.GetFuelPercentage();
-        torchBarFill.fillAmount = fuel;
-        torchBarFill.color = Color.Lerp(emptyTorchColor, fullTorchColor, fuel);
+        torchBarFill.fillAmount = fuel; // Smoothly drains and refills
+
+        if (torchBarFlameAnimator != null)
+        {
+            torchBarFlameAnimator.SetBool("isLit", torch.IsLit()); // Flicker while lit, burn out at zero
+        }
 
         //Hearts and keys
         UpdateIcons(hearts, health.GetCurrentHealth(), fullHeartColor);

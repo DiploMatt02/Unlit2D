@@ -53,6 +53,11 @@ public class TorchLight : MonoBehaviour
         return displayFuel; // Return the current displayed fuel percentage
     }
 
+    public bool IsLit()
+    {
+        return burnTimeLeft > 0f; // True while the torch still has fuel
+    }
+
     public bool IsInLight(Vector2 position)
     {
         if (burnTimeLeft <= 0f)
