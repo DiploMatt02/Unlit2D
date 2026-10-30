@@ -184,7 +184,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -249422396151011416, guid: b6e8fc95314d82947b4867fb20a9d5a7, type: 3}
+  m_Sprite: {fileID: -249422396151011416, guid: 5ead639660a8920429d8bce85db37c03, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1448,70 +1448,50 @@ MonoBehaviour:
       type: {class: ShadowMesh2D, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.2D.Runtime}
       data:
         m_Vertices:
-        - position: {x: 12.9999695, y: 10, z: 0}
-          tangent: {x: -1, y: 0, z: 1, w: 9.9999695}
-        - position: {x: 1, y: 9.9999695, z: 0}
-          tangent: {x: -1, y: 0, z: 1.0000305, w: 9}
-        - position: {x: 1.0000305, y: 9, z: 0}
-          tangent: {x: -1, y: 0, z: 12, w: 8.9999695}
-        - position: {x: 12, y: 8.9999695, z: 0}
-          tangent: {x: -1, y: 0, z: 11.9999695, w: -5}
         - position: {x: 11.9999695, y: -5, z: 0}
+          tangent: {x: -1, y: 0, z: -12, w: -4.9999695}
+        - position: {x: -12, y: -4.9999695, z: 0}
+          tangent: {x: -1, y: 0, z: -12.9999695, w: -6}
+        - position: {x: -12.9999695, y: -6, z: 0}
           tangent: {x: -1, y: 0, z: 12.9999695, w: -6}
         - position: {x: 12.9999695, y: -6, z: 0}
-          tangent: {x: -1, y: 0, z: 12.9999695, w: 10}
-        - position: {x: 12.9999695, y: 10, z: 0}
-          tangent: {x: 0, y: 0, z: 1, w: 9.9999695}
-        - position: {x: 1, y: 9.9999695, z: 0}
-          tangent: {x: 0, y: 0, z: 12.9999695, w: 10}
-        - position: {x: 12.9999695, y: 10, z: 0}
-          tangent: {x: 1, y: 0, z: 1, w: 9.9999695}
-        - position: {x: 12.9999695, y: 10, z: 0}
-          tangent: {x: 3, y: 0, z: 1, w: 9.9999695}
-        - position: {x: 1, y: 9.9999695, z: 0}
-          tangent: {x: 0, y: 0, z: 1.0000305, w: 9}
-        - position: {x: 1.0000305, y: 9, z: 0}
-          tangent: {x: 0, y: 0, z: 1, w: 9.9999695}
-        - position: {x: 1, y: 9.9999695, z: 0}
-          tangent: {x: 1, y: 0, z: 1.0000305, w: 9}
-        - position: {x: 1, y: 9.9999695, z: 0}
-          tangent: {x: 3, y: 0, z: 1.0000305, w: 9}
-        - position: {x: 1.0000305, y: 9, z: 0}
-          tangent: {x: 0, y: 0, z: 12, w: 8.9999695}
-        - position: {x: 12, y: 8.9999695, z: 0}
-          tangent: {x: 0, y: 0, z: 1.0000305, w: 9}
-        - position: {x: 1.0000305, y: 9, z: 0}
-          tangent: {x: 1, y: 0, z: 12, w: 8.9999695}
-        - position: {x: 1.0000305, y: 9, z: 0}
-          tangent: {x: 3, y: 0, z: 12, w: 8.9999695}
-        - position: {x: 12, y: 8.9999695, z: 0}
+          tangent: {x: -1, y: 0, z: 11.9999695, w: -5}
+        - position: {x: 11.9999695, y: -5, z: 0}
+          tangent: {x: 0, y: 0, z: -12, w: -4.9999695}
+        - position: {x: -12, y: -4.9999695, z: 0}
           tangent: {x: 0, y: 0, z: 11.9999695, w: -5}
         - position: {x: 11.9999695, y: -5, z: 0}
-          tangent: {x: 0, y: 0, z: 12, w: 8.9999695}
-        - position: {x: 12, y: 8.9999695, z: 0}
-          tangent: {x: 1, y: 0, z: 11.9999695, w: -5}
-        - position: {x: 12, y: 8.9999695, z: 0}
-          tangent: {x: 3, y: 0, z: 11.9999695, w: -5}
+          tangent: {x: 1, y: 0, z: -12, w: -4.9999695}
         - position: {x: 11.9999695, y: -5, z: 0}
+          tangent: {x: 3, y: 0, z: -12, w: -4.9999695}
+        - position: {x: -12, y: -4.9999695, z: 0}
+          tangent: {x: 0, y: 0, z: -12.9999695, w: -6}
+        - position: {x: -12.9999695, y: -6, z: 0}
+          tangent: {x: 0, y: 0, z: -12, w: -4.9999695}
+        - position: {x: -12, y: -4.9999695, z: 0}
+          tangent: {x: 1, y: 0, z: -12.9999695, w: -6}
+        - position: {x: -12, y: -4.9999695, z: 0}
+          tangent: {x: 3, y: 0, z: -12.9999695, w: -6}
+        - position: {x: -12.9999695, y: -6, z: 0}
           tangent: {x: 0, y: 0, z: 12.9999695, w: -6}
         - position: {x: 12.9999695, y: -6, z: 0}
-          tangent: {x: 0, y: 0, z: 11.9999695, w: -5}
-        - position: {x: 11.9999695, y: -5, z: 0}
+          tangent: {x: 0, y: 0, z: -12.9999695, w: -6}
+        - position: {x: -12.9999695, y: -6, z: 0}
           tangent: {x: 1, y: 0, z: 12.9999695, w: -6}
-        - position: {x: 11.9999695, y: -5, z: 0}
+        - position: {x: -12.9999695, y: -6, z: 0}
           tangent: {x: 3, y: 0, z: 12.9999695, w: -6}
         - position: {x: 12.9999695, y: -6, z: 0}
-          tangent: {x: 0, y: 0, z: 12.9999695, w: 10}
-        - position: {x: 12.9999695, y: 10, z: 0}
+          tangent: {x: 0, y: 0, z: 11.9999695, w: -5}
+        - position: {x: 11.9999695, y: -5, z: 0}
           tangent: {x: 0, y: 0, z: 12.9999695, w: -6}
         - position: {x: 12.9999695, y: -6, z: 0}
-          tangent: {x: 1, y: 0, z: 12.9999695, w: 10}
+          tangent: {x: 1, y: 0, z: 11.9999695, w: -5}
         - position: {x: 12.9999695, y: -6, z: 0}
-          tangent: {x: 3, y: 0, z: 12.9999695, w: 10}
-        m_Indices: 000000000600000007000000070000000100000000000000010000000a0000000b0000000b0000000200000001000000020000000e0000000f0000000f0000000300000002000000030000001200000013000000130000000400000003000000040000001600000017000000170000000500000004000000050000001a0000001b0000001b0000000000000005000000000000000800000009000000010000000c0000000d000000020000001000000011000000030000001400000015000000040000001800000019000000050000001c0000001d000000
+          tangent: {x: 3, y: 0, z: 11.9999695, w: -5}
+        m_Indices: 000000000400000005000000050000000100000000000000010000000800000009000000090000000200000001000000020000000c0000000d0000000d0000000300000002000000030000001000000011000000110000000000000003000000000000000600000007000000010000000a0000000b000000020000000e0000000f000000030000001200000013000000
         m_LocalBounds:
-          m_Center: {x: 6.9999847, y: 2, z: 0}
-          m_Extent: {x: 5.9999847, y: 8, z: 0}
+          m_Center: {x: 0, y: -5.4999847, z: 0}
+          m_Extent: {x: 12.9999695, y: 0.50001526, z: 0}
         m_EdgeProcessing: 1
         m_TrimEdge: 0
         m_FlipX: 0
@@ -2371,7 +2351,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -249422396151011416, guid: b6e8fc95314d82947b4867fb20a9d5a7, type: 3}
+  m_Sprite: {fileID: -249422396151011416, guid: 5ead639660a8920429d8bce85db37c03, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2420,7 +2400,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7b03506bba4d9f45b59779938e785e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlashPickup
-  pickupSound: {fileID: 0}
+  pickupSound: {fileID: 8300000, guid: 48eb82b22ca825941b47fd62afe4cb37, type: 3}
+  pickupVolume: 1
 --- !u!61 &148463646
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2460,7 +2441,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.75, y: 0.75}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 0.75, y: 0.75}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -2516,12 +2497,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 4840735777579599281, guid: 1ace956d8ebcc6c42b8f89333ff303d6, type: 3}
+  m_Sprite: {fileID: 4840735777579599281, guid: 9c2afb9b171f1cf49a9be6ba41f36c0e, type: 3}
   m_Color: {r: 0.9, g: 0.9, b: 0.9, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.75, y: 0.75}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2714,7 +2695,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 4840735777579599281, guid: 1ace956d8ebcc6c42b8f89333ff303d6, type: 3}
+  m_Sprite: {fileID: 4840735777579599281, guid: 9c2afb9b171f1cf49a9be6ba41f36c0e, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -3476,13 +3457,14 @@ MonoBehaviour:
   maxWait: 3.5
   warningTime: 0.3
   maxLungeTime: 5
-  lungeSpeed: 8
-  warningEyes: {fileID: 1226057344}
-  leadTime: 0.8
-  overshootDistance: 1.2
   stalkSpeed: 4
   stalkMargin: 0.8
+  lungeSpeed: 8
+  leadTime: 0.8
+  overshootDistance: 1.2
+  warningEyes: {fileID: 1226057344}
   warningSound: {fileID: 8300000, guid: b796c6ee484156c4f87b8bfb50c8f61e, type: 3}
+  warningVolume: 0.7
 --- !u!114 &382599466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3783,8 +3765,8 @@ Camera:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 4
-  m_BackGroundColor: {r: 1, g: 0.9803922, b: 0.9803922, a: 1}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -5737,12 +5719,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5176848741130461988, guid: 4c2a39fd12c36be4fb48980f5f7d1f16, type: 3}
       propertyPath: fuelAmount
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5176848741130461988, guid: 4c2a39fd12c36be4fb48980f5f7d1f16, type: 3}
       propertyPath: pickupSound
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: 48eb82b22ca825941b47fd62afe4cb37, type: 3}
     - target: {fileID: 6017821984851502769, guid: 4c2a39fd12c36be4fb48980f5f7d1f16, type: 3}
       propertyPath: m_Name
       value: FuelPickup (1)
@@ -9499,7 +9481,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -249422396151011416, guid: b6e8fc95314d82947b4867fb20a9d5a7, type: 3}
+  m_Sprite: {fileID: -249422396151011416, guid: 5ead639660a8920429d8bce85db37c03, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -11291,6 +11273,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EndScreens
   winPanel: {fileID: 1081883214}
   losePanel: {fileID: 1599555015}
+  winSound: {fileID: 8300000, guid: afb5355a92941cd4bae64f94e0a838a0, type: 3}
+  winVolume: 0.8
+  loseSound: {fileID: 8300000, guid: dff9a8612364e314fb95ec98c445c78e, type: 3}
+  loseVolume: 0.8
 --- !u!1 &856023754
 GameObject:
   m_ObjectHideFlags: 0
@@ -13667,7 +13653,7 @@ PrefabInstance:
     - target: {fileID: 189339526205195170, guid: 7af6c5bd3776a2746b7ea47cf0fba312, type: 3}
       propertyPath: pickupSound
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: 48eb82b22ca825941b47fd62afe4cb37, type: 3}
     - target: {fileID: 7486569757729734220, guid: 7af6c5bd3776a2746b7ea47cf0fba312, type: 3}
       propertyPath: m_Name
       value: Key (1)
@@ -14029,6 +14015,9 @@ MonoBehaviour:
   flickerAmount: 0.1
   flickerSpeed: 3
   flashFadeSpeed: 6
+  burnSound: {fileID: 2137013020}
+  extinguishSound: {fileID: 8300000, guid: 06eafaaf6a13c7c4dae6383d9b0918d8, type: 3}
+  extinguishVolume: 1
 --- !u!114 &1435901823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14046,6 +14035,7 @@ MonoBehaviour:
   damageBlinkDuration: 0.1
   endScreens: {fileID: 852943661}
   damageSound: {fileID: 8300000, guid: 7d3ff830e74cf984e95dc36cd83a321b, type: 3}
+  damageVolume: 1
 --- !u!114 &1435901824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14074,6 +14064,8 @@ MonoBehaviour:
   flashActionReference: {fileID: -9098303632018221524, guid: f52becd769c78444fa7f25d3dab02a1b, type: 3}
   stunDuration: 3
   flashBrightness: 4
+  flashSound: {fileID: 8300000, guid: 0c84b7e307f444540a664cde046ffb7e, type: 3}
+  flashVolume: 1
 --- !u!95 &1435901826
 Animator:
   serializedVersion: 7
@@ -17602,7 +17594,7 @@ PrefabInstance:
     - target: {fileID: 189339526205195170, guid: 7af6c5bd3776a2746b7ea47cf0fba312, type: 3}
       propertyPath: pickupSound
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: 48eb82b22ca825941b47fd62afe4cb37, type: 3}
     - target: {fileID: 7486569757729734220, guid: 7af6c5bd3776a2746b7ea47cf0fba312, type: 3}
       propertyPath: m_Name
       value: Key (2)
@@ -18106,6 +18098,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2137013017}
   - component: {fileID: 2137013019}
+  - component: {fileID: 2137013020}
   m_Layer: 0
   m_Name: Lantern
   m_TagString: Untagged
@@ -18212,6 +18205,103 @@ MonoBehaviour:
           m_Image: {fileID: 2800000, guid: 6eaa9958d83ec43499e946a21edba283, type: 3}
           m_Tooltip: 
           m_TextWithWhitespace: "Spot\u200B"
+--- !u!82 &2137013020
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137013016}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 5b4074f5dd56a7e4d9e69b923cac92fb, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &2578111032811359230
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18263,7 +18353,7 @@ PrefabInstance:
     - target: {fileID: 5176848741130461988, guid: 4c2a39fd12c36be4fb48980f5f7d1f16, type: 3}
       propertyPath: pickupSound
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: 48eb82b22ca825941b47fd62afe4cb37, type: 3}
     - target: {fileID: 6017821984851502769, guid: 4c2a39fd12c36be4fb48980f5f7d1f16, type: 3}
       propertyPath: m_Name
       value: FuelPickup
@@ -18284,7 +18374,7 @@ PrefabInstance:
     - target: {fileID: 189339526205195170, guid: 7af6c5bd3776a2746b7ea47cf0fba312, type: 3}
       propertyPath: pickupSound
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: 48eb82b22ca825941b47fd62afe4cb37, type: 3}
     - target: {fileID: 7486569757729734220, guid: 7af6c5bd3776a2746b7ea47cf0fba312, type: 3}
       propertyPath: m_Name
       value: Key
