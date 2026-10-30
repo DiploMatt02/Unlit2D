@@ -3,9 +3,9 @@ using UnityEngine;
 public class ExitDoor : MonoBehaviour
 {
     [SerializeField] private EndScreens endScreens;
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        KeyCollector collector = other.GetComponent<KeyCollector>();
+    private void OnCollisionEnter2D(Collision2D collision)
+{
+    KeyCollector collector = collision.gameObject.GetComponent<KeyCollector>();
         if (collector == null)
         {
             return;
